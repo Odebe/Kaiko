@@ -1,5 +1,5 @@
 class PtestController < Sinatra::Base
-  set :views, Kaiko::Config.views_path
+  set :views, Kaiko::Config.paths['views']
   
   get '/ptest' do 
     "ptest index"

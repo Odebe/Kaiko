@@ -1,5 +1,5 @@
 class PostsController < Sinatra::Base
-  set :views, Kaiko::Config.views_path
+  set :views, Kaiko::Config.paths['views']
 
   index_page = -> do
     "posts\n"

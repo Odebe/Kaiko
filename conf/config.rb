@@ -1,26 +1,23 @@
+require 'yaml'
+
 module Kaiko
   class Config
-    #TODO: read from file
-    @@file = {
-      views_path: "app/views",
-      assets_paths: [
-        "app/assets/js",
-        "app/assets/css",
-      ],
-      components: %w{ helpers controllers },
-    }
 
     def self.file
       @@file
     end
 
+    def self.from_file(filename)
+      @@file = YAML.load_file("#{__dir__}/"+filename)
+    end
+
     def self.method_missing(meth, *args, &block)
-      if self.file.has_key? meth
-        @@file[meth]
+      if self.file.has_key? meth.to_s
+        @@file[meth.to_s]
       else
         super
       end
     end
-    
+
   end
 end
