@@ -1,13 +1,15 @@
-require 'sinatra/base'
+class App < Sinatra::Base
+  set :environment, Sprockets::Environment.new
 
-module Kaiko
+  Kaiko::Config.assets_paths.each { |asset_path| environment.append_path asset_path }
+  Kaiko::Routes.used_routes.each { |c| use const_get("#{c[:name].capitalize}Controller") }
 
-  class App < Sinatra::Base
-    use Kaiko::PostController
-
-    get '/' do 
-      redirect '/posts'
-    end
+  get "/assets/*" do
+    env["PATH_INFO"].sub!("/assets", "")
+    settings.environment.call(env)
   end
 
+  get '/' do 
+    redirect '/posts'
+  end
 end

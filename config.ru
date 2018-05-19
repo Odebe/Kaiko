@@ -1,17 +1,18 @@
 require 'sinatra/base'
+require 'sprockets'
 
-@kaiko_env = { components: {} }
-%w{ helpers controllers }.each do |component|
-  Dir.glob("./#{component}/*.rb").each do |file| 
-    require file
-    @kaiko_env[:components][component.to_sym] ||= []
-    component_name = File.basename(file).sub('.rb','').split('_').map(&:capitalize).join
-    @kaiko_env[:components][component.to_sym] << component_name
-  end
+require './conf/routes.rb'
+require './conf/config.rb'
+
+Kaiko::Routes.configure do 
+  route controller_name: 'posts', menu_name: 'Посты'
+  route controller_name: 'test', usage: false
+  route controller_name: 'ptest', usage: true
 end
 
-puts @kaiko_env
+Kaiko::Config.components.each do |component|
+  Dir.glob("./app/#{component}/*.rb").each { |file| require file }
+end
 
 require './app.rb'
-
-run Kaiko::App
+run App
