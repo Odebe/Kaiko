@@ -7,3 +7,7 @@ paths:
 components:
   - helpers
   - controllers
+
+requires:
+  - lib
+  - conf

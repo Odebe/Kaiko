@@ -6,7 +6,7 @@ html lang="en"
     meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
     meta content="" name="description" /
     meta content="" name="author" /
-    title neko-nya
+    title 123
     /! Bootstrap core CSS
     /!
     link href="/assets/bootstrap.min.css" rel="stylesheet" /
@@ -25,8 +25,8 @@ html lang="en"
           /     span.sr-only (current)
           / li.nav-item
           /   a.nav-link href="#" 123
-          / - Kaiko::Config.components[:controllers].each do |controller|
-          - Kaiko::Routes.menu_elements.each do |element|
+          / - Kaiko::Config['components'][:controllers].each do |controller|
+          - Kaiko::Controller::Manager.menu_elements.each do |element|
             li.nav-item
               a.nav-link href="/#{element.values.first}" = element.keys.first
     main role="main" 

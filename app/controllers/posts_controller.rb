@@ -1,17 +1,16 @@
-class PostsController < Sinatra::Base
-  set :views, Kaiko::Config.paths['views']
+class PostsController < Kaiko::Controller::Base
+  set :views, Kaiko::CONFIG['paths']['views']
 
   index_page = -> do
-    "posts\n"
-    slim '|index',layout: true
+    slim '|index', layout: true
   end 
 
-  show_page = lambda do
+  show_page = -> do
     id = params['captures'].first
     slim :'posts/show', locals: {post_id: id, id: id}, layout: true
   end
 
-  new_page = lambda do 
+  new_page = -> do 
     slim '|new post', layout: true
   end
 

@@ -1,17 +1,15 @@
-class App < Sinatra::Base
+class App < Kaiko::Controller::Base
   set :environment, Sprockets::Environment.new
+  set :assets, Kaiko::CONFIG['paths']['assets']
 
-  # define routes
-  Kaiko::Routes.configure do 
-    route controller_name: 'posts', menu_name: 'Посты'
-    route controller_name: 'test', usage: false
-    route controller_name: 'ptest', usage: true
-  end
+  # define controllers
+  # puts "define controllers"
+  set :controllers, do: -> {
+    puts "2222222"
+    controller 'posts', menu_name: 'Посты'
+  }
 
-  # path to assets
-  Kaiko::Config.paths['assets'].each { |asset_path| environment.append_path asset_path }
-  # use for all routes with used: true
-  Kaiko::Routes.used_routes.each { |c| use const_get("#{c[:name].capitalize}Controller") }
+  puts "321"
 
   # path to assets
   get "/assets/*" do
@@ -23,4 +21,8 @@ class App < Sinatra::Base
   get '/' do 
     redirect '/posts'
   end
+
+  not_found do 
+    '404'
+  end 
 end
