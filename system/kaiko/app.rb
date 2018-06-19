@@ -1,15 +1,17 @@
 require 'dry/system/container'
 require 'dry/system/components'
+require 'sinatra/base'
+require 'sprockets'
 
 module Kaiko
-  class App < Dry::System::container
+  class App < Dry::System::Container
     use :env, inferrer: -> { ENV.fetch('APP_ENV', 'development').to_sym }
 
     configure do |config|
-      config.root = "#{}"
-      config.default_namespace = 'kaiko'
+      config.root = "#{::KAIKO_ROOT_PATH}"
+      config.default_namespace = 'Kaiko'
       config.inflector = Dry::Inflector.new do |inflections|
-        inflections.acronym('Controller')
+        inflections.acronym('Controllers')
       end
       config.auto_register = %w(lib app)
     end
@@ -17,6 +19,6 @@ module Kaiko
     load_paths! 'lib', 'app'
   end
 
-  Import = App.inflector
+  Import = App.injector
   ArgsImport = Import.args
 end

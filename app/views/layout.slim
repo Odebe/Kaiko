@@ -19,16 +19,11 @@ html lang="en"
         span.navbar-toggler-icon
       #navbarsExampleDefault.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
-          / li.nav-item.active
-          /   a.nav-link href="#" 
-          /     | Главная
-          /     span.sr-only (current)
-          / li.nav-item
-          /   a.nav-link href="#" 123
-          / - Kaiko::Config['components'][:controllers].each do |controller|
-          - Kaiko::Controller::Manager.menu_elements.each do |element|
+          / TODO: write helpers
+          - Kaiko::Routes.controllers_list.each do |name|
             li.nav-item
-              a.nav-link href="/#{element.values.first}" = element.keys.first
+            - controller = Kaiko::Routes.by_name(name)
+              a.nav-link href="#{controller.path}" = controller.path.menu
     main role="main" 
       .container
         /! Main jumbotron for a primary marketing message or call to action

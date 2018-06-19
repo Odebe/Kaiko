@@ -1,10 +1,8 @@
-require 'sinatra/base'
-
 module Kaiko
-  module Controller
+  module Controllers
     class Base < Sinatra::Base
-      set :environment, Sprockets::Environment.new
-      Kaiko::CONFIG['paths']['assets'].each { |asset_path| environment.append_path asset_path }
+      set :environment, ::Sprockets::Environment.new
+      Kaiko::Settings.assets.list.each { |asset| environment.append_path Kaiko::Settings.assets.send(asset) }
 
       # path to assets
       get "/assets/*" do
