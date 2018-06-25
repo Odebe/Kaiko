@@ -22,8 +22,7 @@ html lang="en"
           / TODO: write helpers
           - Kaiko::Routes.controllers_list.each do |name|
             li.nav-item
-            - controller = Kaiko::Routes.by_name(name)
-              a.nav-link href="#{controller.path}" = controller.path.menu
+              a.nav-link href="#{Kaiko::Routes.send(name).path}" = Kaiko::Routes.send(name).menu
     main role="main" 
       .container
         /! Main jumbotron for a primary marketing message or call to action

@@ -1,21 +1,26 @@
+# frozen_string_literal: true
+
 module Kaiko
   module Controllers
+    # Routes to handle posts
     class Posts < Kaiko::Controllers::Base
       set :views, Kaiko::Settings.views.path
 
       get '/' do
         slim '|index', layout: true
-      end 
+      end
 
       get '/:id' do
-        slim :'posts/show', locals: {post_id: params['id'], id: params['id']}, layout: true
+        locals = {
+          post_id: params['id'],
+          id: params['id']
+        }
+        slim :'posts/show', locals: locals, layout: true
       end
 
-      get '/new' do 
+      get '/new' do
         slim '|new post', layout: true
       end
-
     end
-
-  end 
+  end
 end

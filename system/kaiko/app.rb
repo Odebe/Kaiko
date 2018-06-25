@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require 'dry/system/container'
 require 'dry/system/components'
 require 'sinatra/base'
 require 'sprockets'
 
 module Kaiko
+  # app class
   class App < Dry::System::Container
     use :env, inferrer: -> { ENV.fetch('APP_ENV', 'development').to_sym }
 
