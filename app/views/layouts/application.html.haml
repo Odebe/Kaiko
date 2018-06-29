@@ -1,0 +1,115 @@
+!!!
+%html
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="utf-8")/
+    %meta(content="IE=edge,chrome=1" http-equiv="X-UA-Compatible")/
+    %meta(content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no" name="viewport")/
+    %meta(content="Semantic-UI-Forest, collection of design, themes and templates for Semantic-UI." name="description")/
+    %meta(content="Semantic-UI, Theme, Design, Template" name="keywords")/
+    %meta(content="PPType" name="author")/
+    %meta(content="#ffffff" name="theme-color")/
+    %title Kaiko
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .ui.borderless.fixed.blue.inverted.pointing.menu
+      .ui.container
+        %a= link_to 'Новости',root_path, class: current_item?('posts')
+        %a= link_to 'Проекты', root_path, class: current_item?('')
+        %a= link_to 'О команде', root_path, class: current_item?('')
+    .ui.grid.container
+      #page-header.row
+        .ui.basic.segment
+          %h1.ui.sub.header
+            DearMemories
+          %span Переводим яойную мангу.
+      #article.row
+        .eleven.wide.column
+          = yield
+        .four.wide.right.floated.column
+          .ui.secondary.segment
+            %h4.ui.header
+              About
+            %p
+              Etiam porta
+              = succeed "." do
+                %i sem malesuada magna mollis euismod
+          %h4.ui.header
+            Archives
+          .ui.list
+            %a.item Septempber 2017
+            %a.item August 2017
+            %a.item June 2017
+            %a.item April 2017
+            %a.item March 2017
+            %a.item February 2017
+            %a.item January 2017
+            %a.item December 2016
+            %a.item October 2016
+            %a.item July 2016
+            %a.item July 2016
+            %a.item May 2016
+            %a.item April 2016
+            %a.item January 2016
+            %a.item May 2015
+          .ui.hidden.divider
+          %h4.ui.header
+            Elsewhere
+          .ui.list
+            %a.item GitHub
+            %a.item Twitter
+            %a.item Google+
+            %a.item Facebook
+    .ui.footer.secondary.segment
+      .ui.center.aligned.container
+        %p
+          Blog template built for Semantic-UI by
+          = succeed "." do
+            %a(href="https://github.com/semantic-ui-forest") @Semantic-UI-Forest
+        %a(href="blog.html#") Back to top
+    :css
+      body {
+        font-family: Georgia, "Times New Roman", "Times", serif;
+      }
+      
+      .ui.inverted.pointing.menu .active.item:after {
+        background-color: white !important;
+      }
+      
+      .ui.sub.header {
+        text-transform: none;
+      }
+      
+      #page-header {
+        margin-top: 4em;
+      }
+      #page-header h1 {
+        font-size: 60px;
+      }
+      #page-header span {
+        font-size: 20px;
+        color: grey;
+      }
+      
+      #article {
+        font-size: 18px;
+        line-height: 1.3;
+      }
+      #article h2 {
+        font-size: 40px;
+      }
+      #article span {
+        color: grey;
+      }
+      #article .four.wide.column .ui.secondary.segment {
+        border: none;
+      }
+      #article .four.wide.column .ui.list .item {
+        font-size: 14px;
+      }
+      
+      .ui.footer.segment {
+        margin-bottom: 0;
+      }

@@ -1,0 +1,11 @@
+%h2.ui.sub.header= post.title
+%span
+  March 6, 2017 by
+  %a(href="blog.html") Пользователь
+  %p
+    = link_to 'Show', post
+    = link_to 'Edit', edit_post_path(post)
+    = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+%p
+  = raw @markdown.render(post.text)#.truncate_words(15)
+.ui.divider

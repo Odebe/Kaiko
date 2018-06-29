@@ -1,7 +1,6 @@
-# frozen_string_literal: true
+# This file is used by Rack-based servers to start the application.
 
-KAIKO_ROOT_PATH = __dir__
-require_relative 'system/boot'
+require_relative 'config/environment'
+require 'semantic-ui-sass'
 
-map('/posts') { run Kaiko::Controllers::Posts }
-map('/') { run Kaiko::Controllers::Base }
+run Rails.application

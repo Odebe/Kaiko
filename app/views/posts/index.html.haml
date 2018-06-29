@@ -1,0 +1,8 @@
+%p#notice= notice
+= link_to 'Создать новость', new_post_path
+= render partial: 'posts/post', collection: @posts, cached: true
+.ui.basic.segment
+  .ui.basic.circular.huge.button
+    %a(href="blog.html#") Previous
+  .ui.basic.circular.huge.button
+    %a(href="blog.html#") Next
