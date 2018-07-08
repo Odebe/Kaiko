@@ -1,6 +1,7 @@
-%p#notice= notice
 = link_to 'Создать новость', new_post_path
-= render partial: 'posts/post', collection: @posts, cached: true
+- @posts.each do |post|
+  %h2.ui.sub.header
+    = link_to post.title, post_path(post.id), class: 'post_title'
 .ui.basic.segment
   .ui.basic.circular.huge.button
     %a(href="blog.html#") Previous

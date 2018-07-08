@@ -19,7 +19,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'get_process_mem'
+
 gem 'redcarpet'
+gem "rubocop-rails"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MarkdownToSemanticUI < Redcarpet::Render::HTML
   def block_quote(quote)
     %(<blockquote class="my-custom-class">#{quote}</blockquote>)

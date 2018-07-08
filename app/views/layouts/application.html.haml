@@ -17,14 +17,14 @@
     .ui.borderless.fixed.blue.inverted.pointing.menu
       .ui.container
         %a= link_to 'Новости',root_path, class: current_item?('posts')
-        %a= link_to 'Проекты', root_path, class: current_item?('')
+        %a= link_to 'Проекты', projects_path, class: current_item?('projects')
         %a= link_to 'О команде', root_path, class: current_item?('')
     .ui.grid.container
       #page-header.row
         .ui.basic.segment
           %h1.ui.sub.header
             DearMemories
-          %span Переводим яойную мангу.
+          %span Переводим мангу.
       #article.row
         .eleven.wide.column
           = yield

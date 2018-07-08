@@ -1,11 +1,16 @@
 %h2.ui.sub.header= post.title
 %span
-  March 6, 2017 by
-  %a(href="blog.html") Пользователь
-  %p
-    = link_to 'Show', post
-    = link_to 'Edit', edit_post_path(post)
-    = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+  March 6, 2018 by
+  %a.ui.image.label
+    = image_tag "http://dearmemories.ucoz.ru/avatar/54/229149.jpg"
+    Пользователь
+  %a.ui.image.label
+    = post.post_type
 %p
-  = raw @markdown.render(post.text)#.truncate_words(15)
-.ui.divider
+  %br
+  - if @post.release_item?
+    = image_tag @post.project.preview.url, class: %w[ui fluid image]
+  = raw @markdown.render(post.text.truncate_words(15))
+  =link_to 'Show', @post
+  =link_to 'Edit', edit_post_path(@post)
+  =link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }

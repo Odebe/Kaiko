@@ -16,5 +16,15 @@
 @import "semantic-ui";
 
 p.text {
-   font-size: 1.2rem;
+   /*font-size: 1.2rem;*/
+}
+
+a {
+	&:hover {
+		background: none;
+	}
+}
+
+.comment_text {
+	/*white-space: pre-line;*/
 }

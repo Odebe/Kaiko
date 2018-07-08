@@ -1,0 +1,10 @@
+.row
+  %span
+    %a.ui.image.label
+      = image_tag "http://dearmemories.ucoz.ru/avatar/54/229149.jpg"
+      Пользователь
+    March 6, 2018
+    =link_to 'Destroy', [@post, comment], method: :delete, data: { confirm: 'Are you sure?' }
+    .column.comment_text
+      = comment.text
+%br/
