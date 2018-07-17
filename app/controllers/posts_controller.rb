@@ -8,13 +8,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    # пока что так можно
+    # TODO: вынести в сервис-запрос
     @posts = Post.all.sort_by(&:id).reverse
   end
 
   # GET /posts/1
-  # GET /posts/1.json
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -22,41 +22,24 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
-  # POST /posts.json
   def create
-    post_creation_result = Posts::CreateService.new(params).call
-    PostsMatcher.call(post_creation_result) do |m|
-      m.success do |post|
-        @post = post
-        redirect_to @post, notice: 'Post was successfully created.'
-      end
-
-      m.failure do |errors|
-        @errors << errors
-        render :new
-      end
-    end
+    matcher(
+      result: Posts::CreateService.new(params).call,
+      success: { note: 'Post was successfully created.' },
+      failure: { render: :new }
+    )
   end
 
   # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
   def update
-    post_updation_result = Posts::UpdateService.new(params).call
-    PostsMatcher.call(post_updation_result) do |m|
-      m.success do |post|
-        @post = post
-        redirect_to @post, notice: 'Post was successfully updated.'
-      end
-
-      m.failure do |errors|
-        @errors << errors
-        render :edit
-      end
-    end
+    matcher(
+      result: Posts::UpdateService.new(params).call,
+      success: { note: 'Post was successfully updated.' },
+      failure: { render: :edit }
+    )
   end
 
   # DELETE /posts/1
@@ -70,6 +53,20 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def matcher(options)
+    PostsMatcher.call(options[:result]) do |m|
+      m.success do |post|
+        @post = post
+        redirect_to @post, notice: options[:success][:note]
+      end
+
+      m.failure do |errors|
+        @errors << errors
+        render options[:failure][:render]
+      end
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post

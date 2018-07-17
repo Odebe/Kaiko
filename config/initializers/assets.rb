@@ -15,5 +15,3 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 # Rails.application.config.assets.precompile += %w( ckeditor/*)
 # Rails.application.config.assets.precompile += %w(ckeditor/config.js)
-
-require_relative '../../app/renderers/markdown_to_senemantic_ui.rb'

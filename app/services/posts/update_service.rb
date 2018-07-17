@@ -16,7 +16,7 @@ module Posts
       else
         validation_result = PostValidator.call(@params)
         if validation_result.failure?
-          end_call(:ok, validation_result.messages)
+          end_call(:error, validation_result.messages)
         else
           update_result = post.update(validation_result.to_h)
           if update_result
@@ -27,6 +27,6 @@ module Posts
         end 
       end
     end
-    
+
   end
 end
