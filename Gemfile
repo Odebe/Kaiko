@@ -5,7 +5,7 @@ ruby '2.5.0'
 
 
 gem 'dry-validation'
-require 'dry-matcher'
+gem 'dry-matcher'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

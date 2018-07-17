@@ -1,11 +1,11 @@
 = form_with(model: post, local: true) do |form|
-  - if post.errors.any?
+  - if @errors.any?
     #error_explanation
       %h2
-        = pluralize(post.errors.count, "error")
+        = pluralize(@errors.count, "error")
         prohibited this post from being saved:
       %ul
-        - post.errors.full_messages.each do |message|
+        - @errors.each do |message|
           %li= message
   .actions
     .ui.form
@@ -18,6 +18,6 @@
       .field
         = form.select 'post_type', options_for_select(Post.post_types.keys)
       .field
-        = form.select 'project_id', options_from_collection_for_select(Project.all, :id, :title)
+        = form.select 'project_id', options_for_select(Project.all.map { |pr| [pr.title, pr.id.to_i] })
       .field
         = form.submit class: "ui button"
