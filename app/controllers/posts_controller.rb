@@ -27,15 +27,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    post_creation_result = CreatePostService.new(params).call
+    PostServiceMatcher.(post_creation_result) do |m|
+      m.success do |post|
+        redirect_to post, notice: 'Post was successfully created.'
+      end
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      m.failure do |_errors|
+        render :new
       end
     end
   end
@@ -43,13 +42,14 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    post = UpdatePostService.new(params).()
     respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+      if post.present?
+        format.html { redirect_to post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: post }
       else
         format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,12 +77,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.fetch(:post, {}).permit(:title, :text, :post_type, :project_id)
-  end
-
-  def converted_params
-    tmp = post_params
-    tmp['type'] = tmp['type'].to_i
-    tmp['project_id'] = tmp['project_id'].to_i
-    tmp
   end
 end
