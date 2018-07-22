@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
   end
 
-  resources :projects
+  resources :projects do
+    resources :chapters, only: %i[create destroy]
+  end
 end

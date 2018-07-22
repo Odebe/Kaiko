@@ -9,3 +9,17 @@
   = image_tag @project.preview.url, class: %w[ui fluid image]
 = link_to 'Edit', edit_project_path(@project)
 = link_to 'Back', projects_path
+
+%h3.ui.header Список глав
+%table.ui.single.line.table
+  %thead
+    %tr
+      %th.one.wide Том
+      %th.one.wide Номер
+      %th.eight.wide Название
+      %th.two.wide Ссылка
+  %tbody
+    = render partial: 'chapters/chapter', collection: @project.chapters
+.ui.divider
+%h3.ui.header Добавить главу
+= render 'chapters/form'

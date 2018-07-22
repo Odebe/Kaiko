@@ -3,9 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.0'
 
-
-gem 'dry-validation'
 gem 'dry-matcher'
+gem 'dry-validation'
+
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -25,7 +26,7 @@ gem 'mini_magick'
 gem 'get_process_mem'
 
 gem 'redcarpet'
-gem "rubocop-rails"
+gem 'rubocop-rails'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-module Posts
+module Projects
   # helpers for post services
   module ServicesHelper
-    # see post attributes in  post_validator.rb
-    REQUIRED_PARAMS = %i[title text post_type project_id].freeze
+    # see post attributes in project_validator.rb
+    REQUIRED_PARAMS = %i[title description preview preview_cache].freeze
 
-    attr_reader :post
+    attr_reader :project
 
     def valid_record?
       # TODO: change this part i guess
@@ -17,8 +17,8 @@ module Posts
       @validation_result.messages
     end
 
-    def post_params(params)
-      params.fetch(:post, {}).permit(REQUIRED_PARAMS).to_h
+    def project_params(params)
+      params.fetch(:project, {}).permit(REQUIRED_PARAMS).to_h
     end
 
     def verified_params

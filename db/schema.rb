@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_08_183356) do
+ActiveRecord::Schema.define(version: 2018_07_22_150939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chapters", force: :cascade do |t|
+    t.string "title"
+    t.bigint "project_id"
+    t.integer "vol"
+    t.integer "num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_chapters_on_project_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "text"
@@ -41,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_183356) do
     t.string "preview"
   end
 
+  add_foreign_key "chapters", "projects"
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "projects"
 end

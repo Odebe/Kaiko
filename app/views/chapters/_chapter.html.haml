@@ -1,0 +1,6 @@
+%tr
+  %td= chapter.vol
+  %td= chapter.num
+  %td= chapter.title
+  %td Скачать
+  %td= link_to 'Destroy', [@project, chapter], method: :delete, data: { confirm: 'Are you sure?' }

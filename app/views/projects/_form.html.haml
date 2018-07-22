@@ -1,21 +1,13 @@
-= form_with(model: project, local: true) do |form|
-  - if project.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(project.errors.count, "error")
-        prohibited this project from being saved:
-      %ul
-        - project.errors.full_messages.each do |message|
-          %li= message
+= simple_form_for project do |f|
   .ui.form
     .field
-      = form.label :title
-      = form.text_field :title
+      = f.error :base
     .field
-      = form.label :description
-      = form.text_area :description
+      = f.input :title
     .field
-      = form.file_field :preview
-      = form.hidden_field :preview_cache
-    .actions
-      = form.submit
+      = f.input :description
+    .field
+      = f.input :preview, as: :file
+      = f.input :preview_cache, as: :hidden
+    .field
+      = f.button :submit, class: 'ui button'

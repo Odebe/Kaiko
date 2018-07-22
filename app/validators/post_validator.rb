@@ -4,5 +4,5 @@ PostValidator = Dry::Validation.Schema do
   required(:title).filled
   required(:text).filled
   required(:post_type).filled
-  required(:project_id).maybe(:int?)
+  optional(:project_id)
 end

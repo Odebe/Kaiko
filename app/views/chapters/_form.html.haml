@@ -1,0 +1,10 @@
+= simple_form_for [@project, @project.chapters.build] do |f|
+  .ui.form
+    .field
+      = f.input :title
+    .field
+      = f.input :vol
+    .field
+      = f.input :num
+    .field
+      = f.button :submit, class: "ui button"

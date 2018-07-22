@@ -2,6 +2,7 @@
 
 class Project < ApplicationRecord
   mount_uploader :preview, ProjectPreviewUploader
-  validates :title, presence: true
-  validates :description, presence: true
+  has_many :chapters
+  # validates :title, presence: true
+  # validates :description, presence: true
 end
