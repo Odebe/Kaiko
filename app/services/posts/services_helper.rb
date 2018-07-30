@@ -18,7 +18,12 @@ module Posts
     end
 
     def post_params(params)
-      params.fetch(:post, {}).permit(REQUIRED_PARAMS).to_h
+      tmp = params.fetch(:post, {})
+      if tmp.is_a? Hash 
+        tmp.slice(*REQUIRED_PARAMS)
+      else
+        tmp.permit(REQUIRED_PARAMS).to_h
+      end
     end
 
     def verified_params

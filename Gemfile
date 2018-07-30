@@ -9,6 +9,9 @@ gem 'dry-validation'
 gem 'simple_form'
 gem 'sidekiq'
 
+gem 'redis'
+gem 'redis-namespace'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
@@ -27,7 +30,7 @@ gem 'mini_magick'
 gem 'get_process_mem'
 
 gem 'redcarpet'
-gem 'rubocop-rails'
+gem "rubocop-rails_config"
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

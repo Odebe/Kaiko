@@ -11,7 +11,7 @@ class ChaptersController < ApplicationController
   def create
     chapter = @project.chapters.create(chapter_params)
     if chapter.valid?
-      ReleasePostWorker.perform_async(chapter)
+      ReleasePostWorker.perform_async(chapter.id)
       redirect_to @project, notice: 'Comment was successfully created.'
     else
       redirect_to @project, notice: chapter.errors 
