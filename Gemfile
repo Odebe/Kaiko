@@ -6,11 +6,14 @@ ruby '2.5.0'
 gem 'dry-matcher'
 gem 'dry-validation'
 
-gem 'simple_form'
 gem 'sidekiq'
+gem 'simple_form'
 
+# gem 'rails-perftest'
 gem 'redis'
 gem 'redis-namespace'
+
+# gem 'ruby-prof'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

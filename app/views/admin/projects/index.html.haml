@@ -1,0 +1,22 @@
+.row
+  %h1.ui.huge.header Список проектов
+  = link_to 'Добавить проект', new_admin_project_path
+  %table.ui.single.line.table
+    %thead
+      %tr
+        %th.eight.wide Название
+        %th.one.wide Автор
+        %th.one.wide Дата
+        %th.two.wide Операции
+    %tbody
+      - @projects.each do |project|
+        %tr
+          %td= link_to project.title, admin_project_path(project), class: 'post_title'
+          %td Admin
+          %td= project.created_at.strftime("%m/%d/%Y в %I:%M%p")
+          %td
+            Опубликовать
+            |
+            =link_to 'Изменить', edit_admin_project_path(project)
+            |
+            =link_to 'Удалить', [:admin, project], method: :delete, data: { confirm: 'Are you sure?' }

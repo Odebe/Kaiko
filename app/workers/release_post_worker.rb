@@ -2,13 +2,13 @@
 
 class ReleasePostWorker
   include Sidekiq::Worker
-  
+
   def perform(chapter_id)
     chapter = Chapter.find(chapter_id)
     create_service = Posts::CreateService.new(
       post: {
-        title: "Релиз #{chapter.project.title} главы #{chapter.num}",
-        text: 'текст релиза',
+        title: "#{chapter.project.title} - том #{chapter.vol} глава #{chapter.num}",
+        text: "Переведена глава '#{chapter.title}' ",
         post_type: 'release_item',
         project_id: chapter.project.id
       }

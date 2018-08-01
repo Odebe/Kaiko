@@ -10,13 +10,20 @@ module Posts
     end
 
     def call(params)
-      return find(params[:id]) if params[:id].present?
+      post = filter_by_id(params)
+      return post if post.present?
+
       scope = @init_scope
       # ...
       scope
     end
 
     private
+
+    def filter_by_id(params)
+      id = params[:post_id] || params[:id]
+      id.present? ? find(id) : nil
+    end
 
     def find(post_id)
       Post.find(post_id)

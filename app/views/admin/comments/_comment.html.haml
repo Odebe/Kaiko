@@ -1,0 +1,5 @@
+%tr
+	%td Пользователь
+	%td= comment.text
+	%td= comment.created_at.strftime("%m/%d/%Y в %I:%M%p")
+	%td= link_to 'Удалить', admin_post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }

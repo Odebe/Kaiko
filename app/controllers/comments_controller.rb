@@ -6,31 +6,10 @@ class CommentsController < ApplicationController
 
   def new; end
 
-  def edit; end
-
-  def create
-    @post = Post.find(params[:post_id])
-    comment = @post.comments.create(comment_params)
-    if comment.valid?
-      edirect_to @post, notice: 'Comment was successfully created.'
-    else
-      redirect_to @post, notice: comment.errors 
-    end
-  end
-
-  def destroy
-    @comment.destroy
-    redirect_to @post
-  end
-
   private
 
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
   def set_post
-    @post = Posts::QueryService.new.call(id: params[:post_id])
+    @post = Posts::QueryService.new.call(params)
   end
 
   def comment_params

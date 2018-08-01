@@ -19,7 +19,7 @@ module Posts
 
     def post_params(params)
       tmp = params.fetch(:post, {})
-      if tmp.is_a? Hash 
+      if tmp.is_a? Hash
         tmp.slice(*REQUIRED_PARAMS)
       else
         tmp.permit(REQUIRED_PARAMS).to_h

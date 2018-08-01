@@ -10,13 +10,20 @@ module Projects
     end
 
     def call(params)
-      return find(params[:id]) if params[:id].present?
+      project = filter_by_id(params)
+      return project if project.present?
+
       scope = @init_scope
       # ...
       scope
     end
 
     private
+
+    def filter_by_id(params)
+      id = params[:project_id] || params[:id]
+      id.present? ? find(id) : nil
+    end
 
     def find(post_id)
       Project.find(post_id)

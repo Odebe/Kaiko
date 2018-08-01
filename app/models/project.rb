@@ -2,7 +2,6 @@
 
 class Project < ApplicationRecord
   mount_uploader :preview, ProjectPreviewUploader
+  mount_uploader :cover, ProjectCoverUploader
   has_many :chapters
-  # validates :title, presence: true
-  # validates :description, presence: true
 end

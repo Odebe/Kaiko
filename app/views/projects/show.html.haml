@@ -1,25 +1,55 @@
-%p
-  %strong Title:
-  = @project.title
-%p
-  %strong Description:
-  = @project.description
-%p
-  %strong Preview:
-  = image_tag @project.preview.url, class: %w[ui fluid image]
-= link_to 'Edit', edit_project_path(@project)
-= link_to 'Back', projects_path
+-# %p
+-#   %strong Title:
+-#   = @project.title
+-# %p
+-#   %strong Description:
+-#   = @project.description
+-# %p
+-#   %strong Preview:
+-#   = image_tag @project.preview.url, class: %w[ui fluid image]
+-# = link_to 'Edit', edit_admin_project_path(@project)
+-# = link_to 'Back', projects_path
 
-%h3.ui.header Список глав
-%table.ui.single.line.table
-  %thead
-    %tr
-      %th.one.wide Том
-      %th.one.wide Номер
-      %th.eight.wide Название
-      %th.two.wide Ссылка
-  %tbody
-    = render partial: 'chapters/chapter', collection: @project.chapters
-.ui.divider
-%h3.ui.header Добавить главу
-= render 'chapters/form'
+-# %h3.ui.header Список глав
+-# %table.ui.single.line.table
+-#   %thead
+-#     %tr
+-#       %th.one.wide Том
+-#       %th.one.wide Номер
+-#       %th.eight.wide Название
+-#       %th.two.wide Ссылка
+-#   %tbody
+-#     = render partial: 'chapters/chapter', collection: @project.chapters
+-# .ui.divider
+.row
+  %h1.ui.huge.header= @project.title 
+   
+.ui.grid
+  .row
+    .seven.wide.column
+      = image_tag @project.preview.url, class: %w[ui fluid image], height: 200, width: 100
+    .nine.wide.column
+      .row
+        %h3.ui.header Название(другие названия)
+      .row
+        = @project.title
+      .row
+        %h3.ui.header Описание
+      .row
+        = @project.description
+      .row
+        %h3.ui.header Жанры
+      .row
+        Жанры
+  .row
+    .divider.hidden
+    %h3.ui.header Список глав
+    %table.ui.single.line.table
+      %thead
+        %tr
+          %th.one.wide Том
+          %th.one.wide Номер
+          %th.seven.wide Название
+          %th.two.wide Ссылка
+      %tbody
+        = render partial: 'chapters/chapter', collection: @project.chapters.select{ |c| c.id.present? }, as: :chapter

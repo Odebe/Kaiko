@@ -1,0 +1,16 @@
+.row
+  %h1.ui.huge.header= @post.title
+  %p
+    =link_to 'Показать на сайте', @post 
+    |
+    =link_to 'Изменить', edit_admin_post_path(@post)
+    |
+    =link_to 'Удалить', [:admin, @post], method: :delete, data: { confirm: 'Are you sure?' }
+  %span
+    March 6, 2018 by
+    %a.ui.image.label
+      = image_tag "http://dearmemories.ucoz.ru/avatar/54/229149.jpg"
+      Пользователь
+    %a.ui.image.label= post_type(@post.post_type)
+  %p
+    %br

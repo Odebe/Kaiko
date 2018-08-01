@@ -1,0 +1,17 @@
+- if controller.action_name == 'edit'
+  .ui.message
+    .header Важно
+    %p Изменить возможно только название. Так же стоит учитывать, что название поменяется только в списке глав у проекта, но не в релизных новостях.
+
+= simple_form_for [:admin, @project, @chapter] do |f|
+  .ui.form
+    .field
+      .three.fields
+        .eight.wide.field
+          = f.input :title, label: 'Название'
+        .three.wide.field
+          = f.input :vol, label: 'Том', disabled: is_disabled_for?('edit')
+        .three.wide.field
+          = f.input :num, label: 'Глава', disabled: is_disabled_for?('edit')
+    .field
+      = f.button :submit, class: "ui button"

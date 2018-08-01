@@ -4,7 +4,7 @@ module Projects
   # helpers for post services
   module ServicesHelper
     # see post attributes in project_validator.rb
-    REQUIRED_PARAMS = %i[title description preview preview_cache].freeze
+    REQUIRED_PARAMS = %i[title description preview preview_cache cover cover_cache].freeze
 
     attr_reader :project
 

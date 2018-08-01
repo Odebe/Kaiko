@@ -1,0 +1,16 @@
+.ui.message
+  .header Важно
+  %p Для новости типа release_item должен быть выбран проект, к которому новость относится, иначе не будет показана превью проекта.
+= simple_form_for [:admin, post], html: { class: 'ui form' } do |f|
+  .field
+    = f.error :base
+  .field
+    = f.input :title, label: 'Заголовок'
+  .field
+    = f.input :text, label: 'Текст'
+  .field
+    = f.input :post_type, label: 'Тип новости', collection: Post.post_types.keys, as: :radio_buttons
+  .field
+    = f.input :project_id, label: 'Проект', collection: Project.pluck(:title, :id)
+  .field
+    = f.button :submit, class: "ui button"
