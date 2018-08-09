@@ -3,8 +3,8 @@
 ProjectValidator = Dry::Validation.Schema do
   required(:title).filled
   required(:description).filled
-  optional(:preview)
+  required(:preview)
   optional(:preview_cache)
-  optional(:cover)
+  required(:cover)
   optional(:cover_cache)
 end

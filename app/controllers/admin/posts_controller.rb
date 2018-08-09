@@ -18,22 +18,25 @@ module Admin
     def edit; end
 
     def create
-      create_service = Posts::CreateService.new(params)
-      @post = create_service.post
-      if create_service.valid_record?
-        create_service.create
+      result = CreatePost.new.call(params)
+      if result.success?
+        @post = result.value!
         redirect_to [:admin, @post], notice: 'Post was successfully created.'
       else
+        @post = Post.new
+        @post.errors[:base].push(result.failure)
         render :new
       end
     end
 
     def update
-      update_service = Posts::UpdateService.new(params)
-      @post = update_service.post
-      if update_service.valid_record? && update_service.update
-        redirect_to [:admin, @post], notice: 'Post was successfully updated.'
+      result = UpdatePost.new.call(params)
+      if result.success?
+        @post = result.value!
+        redirect_to [:admin, @post], notice: 'Post was successfully created.'
       else
+        @post = Post.new
+        @post.errors[:base].push(result.failure)
         render :new
       end
     end

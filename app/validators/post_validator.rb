@@ -7,3 +7,4 @@ PostValidator = Dry::Validation.Schema do
   optional(:project_id)
   optional(:status)
 end
+

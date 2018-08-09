@@ -27,90 +27,93 @@
             DearMemories
           %span Переводим мангу.
       #article.row
-        .eleven.wide.column
-          = yield
-        .four.wide.right.floated.column
-          .ui.secondary.segment
+        .two.column.doubling.ui.grid
+          .twelve.wide.column
+            = yield
+          .three.wide.right.floated.column
+            .ui.vertical.segment
+              %h4.ui.header
+                Для донатов
+              %p
+                %i - Где деньбги взять? Давно известно!..
+              %p
+                8-800-555-35-35
+              %p
+                = image_tag 'http://dearmemories.ucoz.ru/DesAnitube/help.png'
             %h4.ui.header
-              About
-            %p
-              Etiam porta
-              = succeed "." do
-                %i sem malesuada magna mollis euismod
-          %h4.ui.header
-            Archives
-          .ui.list
-            %a.item Septempber 2017
-            %a.item August 2017
-            %a.item June 2017
-            %a.item April 2017
-            %a.item March 2017
-            %a.item February 2017
-            %a.item January 2017
-            %a.item December 2016
-            %a.item October 2016
-            %a.item July 2016
-            %a.item July 2016
-            %a.item May 2016
-            %a.item April 2016
-            %a.item January 2016
-            %a.item May 2015
-          .ui.hidden.divider
-          %h4.ui.header
-            Elsewhere
-          .ui.list
-            %a.item GitHub
-            %a.item Twitter
-            %a.item Google+
-            %a.item Facebook
-    .ui.footer.secondary.segment
-      .ui.center.aligned.container
-        %p
-          Blog template built for Semantic-UI by
-          = succeed "." do
-            %a(href="https://github.com/semantic-ui-forest") @Semantic-UI-Forest
-        %a(href="blog.html#") Back to top
-    :css
-      body {
-        font-family: Georgia, "Times New Roman", "Times", serif;
-      }
-      
-      .ui.inverted.pointing.menu .active.item:after {
-        background-color: white !important;
-      }
-      
-      .ui.sub.header {
-        text-transform: none;
-      }
-      
-      #page-header {
-        margin-top: 4em;
-      }
-      #page-header h1 {
-        font-size: 60px;
-      }
-      #page-header span {
-        font-size: 20px;
-        color: grey;
-      }
-      
-      #article {
-        font-size: 18px;
-        line-height: 1.3;
-      }
-      #article h2 {
-        font-size: 40px;
-      }
-      #article span {
-        color: grey;
-      }
-      #article .four.wide.column .ui.secondary.segment {
-        border: none;
-      }
-      #article .four.wide.column .ui.list .item {
-        font-size: 14px;
-      }
-      
-      .ui.footer.segment {
-        margin-bottom: 0;
-      }
+              Archives
+            .ui.list
+              %a.item Septempber 2017
+              %a.item August 2017
+              %a.item June 2017
+              %a.item April 2017
+              %a.item March 2017
+              %a.item February 2017
+              %a.item January 2017
+              %a.item December 2016
+              %a.item October 2016
+              %a.item July 2016
+              %a.item July 2016
+              %a.item May 2016
+              %a.item April 2016
+              %a.item January 2016
+              %a.item May 2015
+            .ui.hidden.divider
+            %h4.ui.header
+              Elsewhere
+            .ui.list
+              %a.item GitHub
+              %a.item Twitter
+              %a.item Google+
+              %a.item Facebook
+      .ui.footer.secondary.segment
+        .ui.center.aligned.container
+          %p
+            Blog template built for Semantic-UI by
+            = succeed "." do
+              %a(href="https://github.com/semantic-ui-forest") @Semantic-UI-Forest
+          %a(href="blog.html#") Back to top
+      :css
+        body {
+          font-family: Georgia, "Times New Roman", "Times", serif;
+        }
+        
+        .ui.inverted.pointing.menu .active.item:after {
+          background-color: white !important;
+        }
+        
+        .ui.sub.header {
+          text-transform: none;
+        }
+        
+        #page-header {
+          margin-top: 4em;
+        }
+        #page-header h1 {
+          font-size: 60px;
+        }
+        #page-header span {
+          font-size: 20px;
+          color: grey;
+        }
+        
+        #article {
+          font-size: 18px;
+          line-height: 1.3;
+        }
+        #article h2 {
+          font-size: 40px;
+        }
+        #article span {
+          color: grey;
+        }
+        #article .four.wide.column .ui.secondary.segment {
+          border: none;
+        }
+        #article .four.wide.column .ui.list .item {
+          font-size: 14px;
+        }
+        
+        .ui.footer.segment {
+          margin-bottom: 0;
+        }

@@ -4,7 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 
 gem 'dry-matcher'
+gem 'dry-monads'
 gem 'dry-validation'
+gem 'dry-transaction'
 
 gem 'sidekiq'
 gem 'simple_form'

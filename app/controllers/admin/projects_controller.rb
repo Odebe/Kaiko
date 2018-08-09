@@ -19,29 +19,39 @@ module Admin
     def edit; end
 
     def create
-      create_service = Projects::CreateService.new(params)
-      @project = create_service.project
-      if create_service.valid_record?
-        create_service.create
+      result = CreateProject.new.call(params)
+      if result.success?
+        @project = result.value!
         redirect_to [:admin, @project]
       else
+        @project = Project.new
+        @project.errors[:base].push(result.failure)
         render :new
       end
     end
 
     def update
-      update_service = Projects::UpdateService.new(params)
-      @project = update_service.project
-      if update_service.valid_record? && update_service.update
-        redirect_to [:admin, @project]
+      result = UpdateProject.new.call(params)
+      if result.success?
+        @project = result.value!
+        redirect_to admin_project_path(@project)
       else
+        @project = Project.new
+        @project.errors[:base].push(result.failure)
         render :edit
       end
+      # update_service = Projects::UpdateService.new(params)
+      # @project = update_service.project
+      # if update_service.valid_record? && update_service.update
+      #   redirect_to [:admin, @project]
+      # else
+      #   render :edit
+      # end
     end
 
     def destroy
       @project.destroy
-      redirect_to [:admin, projects_url], notice: 'Project was successfully destroyed.'
+      redirect_to admin_projects_url, notice: 'Project was successfully destroyed.'
     end
 
     private

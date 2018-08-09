@@ -26,21 +26,22 @@
    
 .ui.grid
   .row
-    .seven.wide.column
-      = image_tag @project.preview.url, class: %w[ui fluid image], height: 200, width: 100
-    .nine.wide.column
-      .row
-        %h3.ui.header Название(другие названия)
-      .row
-        = @project.title
-      .row
-        %h3.ui.header Описание
-      .row
-        = @project.description
-      .row
-        %h3.ui.header Жанры
-      .row
-        Жанры
+    .two.column.doubling.ui.grid
+      .seven.wide.column
+        = image_tag @project.cover.url, class: %w[ui fluid image], height: 200, width: 100
+      .eight.wide.column
+        .row
+          %h3.ui.header Название(другие названия)
+        .row
+          = @project.title
+        .row
+          %h3.ui.header Описание
+        .row
+          = @project.description
+        .row
+          %h3.ui.header Жанры
+        .row
+          Жанры
   .row
     .divider.hidden
     %h3.ui.header Список глав

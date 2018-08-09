@@ -80,12 +80,25 @@ GEM
     dry-core (0.4.7)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.1)
+    dry-events (0.1.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4)
+      dry-equalizer (~> 0.2)
     dry-inflector (0.1.2)
     dry-logic (0.4.2)
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
     dry-matcher (0.7.0)
+    dry-monads (1.0.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.4, >= 0.4.4)
+      dry-equalizer
+    dry-transaction (0.13.0)
+      dry-container (>= 0.2.8)
+      dry-events (>= 0.1.0)
+      dry-matcher (>= 0.7.0)
+      dry-monads (>= 0.4.0)
     dry-types (0.13.2)
       concurrent-ruby (~> 1.0)
       dry-container (~> 0.3)
@@ -172,7 +185,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails-perftest (0.0.7)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -199,7 +211,6 @@ GEM
     rubocop-rails_config (0.2.2)
       railties (>= 3.0)
       rubocop (~> 0.56)
-    ruby-prof (0.17.0)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
@@ -272,6 +283,8 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   dry-matcher
+  dry-monads
+  dry-transaction
   dry-validation
   get_process_mem
   hamlit
@@ -281,12 +294,10 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.0)
-  rails-perftest
   redcarpet
   redis
   redis-namespace
   rubocop-rails_config
-  ruby-prof
   sass-rails (~> 5.0)
   selenium-webdriver
   semantic-ui-sass

@@ -3,7 +3,6 @@
 module Posts
   # this service handle post searching
   class QueryService
-    include Posts::ServicesHelper
 
     def initialize
       @init_scope = Post.all.order(id: :desc)

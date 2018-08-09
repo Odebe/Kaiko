@@ -3,7 +3,7 @@
 module Projects
   # this service handle projects  searching
   class QueryService
-    include Projects::ServicesHelper
+    # include Projects::ServicesHelper
 
     def initialize
       @init_scope = Project.all.order(id: :desc)

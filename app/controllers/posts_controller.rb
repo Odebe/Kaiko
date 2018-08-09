@@ -7,7 +7,9 @@ class PostsController < ApplicationController
   def index
     @posts = Posts::QueryService.new.call({})
   end
-  def show; end
+  def show
+    puts params.fetch(:id)
+  end
 
   private
 
