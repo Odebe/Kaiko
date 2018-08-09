@@ -9,4 +9,4 @@
   %br
   - if @post.release_item?
     = image_tag @post.project.preview.url, class: %w[ui fluid image]
-  = raw @markdown.render(post.text.truncate_words(15))
+  = raw @markdown.render(post.text)

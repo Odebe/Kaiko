@@ -1,0 +1,7 @@
+.ui.grid
+  .row
+    %h1.ui.huge.header Ативные проекты
+
+  - @projects.each do |project|
+    .row
+      = link_to image_tag(project.preview.url, class: 'ui image fluid'), project

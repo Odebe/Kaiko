@@ -1,15 +1,29 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[destroy]
   before_action :set_post, only: %i[create destroy]
+  before_action :set_comment, only: %i[destroy]
 
   def new; end
+
+  def create
+    @post.comments.create(comment_params)
+    redirect_to @post
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_to @post
+  end
 
   private
 
   def set_post
     @post = Posts::QueryService.new.call(params)
+  end
+
+  def set_comment
+    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params
