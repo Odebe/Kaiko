@@ -4,8 +4,10 @@ module Posts
   # this service handle post searching
   class QueryService
 
+    PARAMS = { per: 5 }.freeze
+
     def initialize
-      @init_scope = Post.all.order(id: :desc)
+      @init_scope = Post.all.order(id: :desc).includes(:project)
     end
 
     def call(params)
@@ -13,7 +15,7 @@ module Posts
       return post if post.present?
 
       scope = @init_scope
-      # ...
+      scope = filter_by_page(scope, params[:page])
       scope
     end
 
@@ -22,6 +24,14 @@ module Posts
     def filter_by_id(params)
       id = params[:post_id] || params[:id]
       id.present? ? find(id) : nil
+    end
+
+    def filter_by_page(scope, page_num)
+      if page_num.present?
+        scope.page(page_num).per(PARAMS[:per])
+      else
+        scope.page(0).per(PARAMS[:per])
+      end
     end
 
     def find(post_id)

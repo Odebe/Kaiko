@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'redis'
 gem 'redis-namespace'
 
+gem 'kaminari'
 # gem 'ruby-prof'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

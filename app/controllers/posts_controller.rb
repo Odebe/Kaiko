@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   before_action :set_markdown
 
   def index
-    @posts = Posts::QueryService.new.call({})
+    @posts = Posts::QueryService.new.call(params)
   end
+
   def show
     puts params.fetch(:id)
   end

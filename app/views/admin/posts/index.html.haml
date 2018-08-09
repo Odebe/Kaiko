@@ -20,3 +20,4 @@
             =link_to 'Изменить', edit_admin_post_path(post)
             | 
             = link_to 'Удалить', [:admin, post], method: :delete, data: { confirm: 'Are you sure?' } 
+  = paginate @posts

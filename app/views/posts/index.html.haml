@@ -17,10 +17,4 @@
         %p= link_to image_tag(post.project.preview.url, class: %w[ui fluid image]), post_path(post)
       - else
         %p= post.text
-  -# %h2.ui.sub.header
-  -#   = link_to post.title, post_path(post.id), class: 'post_title'
-.ui.basic.segment
-  .ui.basic.circular.huge.button
-    %a(href="blog.html#") Previous
-  .ui.basic.circular.huge.button
-    %a(href="blog.html#") Next
+= paginate @posts

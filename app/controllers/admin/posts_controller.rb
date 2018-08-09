@@ -6,7 +6,7 @@ module Admin
     before_action :set_markdown
 
     def index
-      @posts = Posts::QueryService.new.call(params)
+      @posts = Admin::Posts::QueryService.new.call(params)
     end
 
     def show; end
@@ -60,7 +60,7 @@ module Admin
     private
 
     def set_post
-      @post = Posts::QueryService.new.call(params)
+      @post = Admin::Posts::QueryService.new.call(params)
     end
 
     def set_markdown
