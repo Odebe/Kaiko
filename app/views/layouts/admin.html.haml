@@ -15,12 +15,12 @@
   %body
     .ui.inverted.huge.borderless.fixed.fluid.menu
       / %a.header.item 
-      = link_to 'DearMemories', root_path, class: 'header item'
+      = link_to 'DearMemories', admin_root_path, class: 'header item'
       .right.menu
         .item
           .ui.small.input
             %input{:placeholder => "Search..."}/
-        %a.item Dashboard
+        = link_to 'На сайт', root_path, class: 'item'
         %a.item Settings
         %a.item Profile
         %a.item Help
@@ -35,7 +35,7 @@
           .ui.grid
             .row
               %h1.ui.huge.header
-                Панель админа
+                Панель администратора
             .ui.divider
             .row
               = yield

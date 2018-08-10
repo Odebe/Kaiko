@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: kaiko_production
-  username: kaiko
-  password: <%= ENV['KAIKO_DATABASE_PASSWORD'] %>
+

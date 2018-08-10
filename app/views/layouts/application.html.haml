@@ -19,7 +19,15 @@
         %a= link_to 'Новости',root_path, class: current_item?('posts')
         %a= link_to 'Проекты', projects_path, class: current_item?('projects')
         %a= link_to 'О команде', root_path, class: current_item?('')
-        %a= link_to 'Админка', admin_root_path, class: current_item?('')
+        - if user_signed_in?
+          %a= link_to 'Админка', admin_root_path, class: current_item?('')
+        .right.menu
+          - if user_signed_in?
+            %a= link_to 'Профиль', '', class: current_item?('')
+            %a= link_to 'Выход', destroy_user_session_url, class: current_item?(''), method: 'delete'
+          - else
+            %a= link_to 'Регистрация', new_user_registration_path, class: current_item?('registration')
+            %a= link_to 'Вход', new_user_session_path, class: current_item?('sessions')
     .ui.grid.container
       #page-header.row
         .ui.basic.segment

@@ -2,6 +2,8 @@
 
 module Admin
   class ApplicationController < ActionController::Base
+    before_action :authenticate_user!
+    
     layout 'admin'
     
     before_action :mem
