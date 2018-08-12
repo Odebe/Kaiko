@@ -9,8 +9,4 @@
   .field
     = f.input :text, label: 'Текст'
   .field
-    = f.input :post_type, label: 'Тип новости', collection: Post.post_types.keys, as: :radio_buttons
-  .field
-    = f.input :project_id, label: 'Проект', collection: Project.pluck(:title, :id)
-  .field
     = f.button :submit, class: "ui button"

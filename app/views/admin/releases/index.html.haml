@@ -1,0 +1,24 @@
+.ui.message
+  .header Важно
+  %p Добавлять релиз с этой страницы следует только в том случае, если он не создаётся при добавлении главы. Так же на странцие проекта в списке глав можно повторно создать релиз.
+.row
+  %h1.ui.huge.header Список релизов
+  = link_to 'Добавить релиз', new_admin_release_path
+  %table.ui.single.line.table
+    %thead
+      %tr
+        %th.one.wide Том
+        %th.one.wide Глава
+        %th.eight.wide Проект
+        %th.one.wide Дата
+        %th.two.wide Операции
+    %tbody
+      - @releases.each do |release|
+        %tr
+          %td= release.chapter.vol
+          %td= release.chapter.num
+          %td= release.project.title
+          %td= release.created_at.strftime("%m/%d/%Y в %I:%M%p")
+          %td 
+            Опубликовать
+= paginate @releases

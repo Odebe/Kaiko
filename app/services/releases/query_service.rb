@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Posts
+module Releases
   # this service handle post searching
   class QueryService
 
-    PARAMS = { per: 5 }.freeze
+    PARAMS = { per: 25 }.freeze
 
     def initialize
-      @init_scope = Post.all.order(id: :desc)
+      @init_scope = Release.all.order(id: :desc).includes(:chapter, :project)
     end
 
     def call(params)
@@ -35,7 +35,7 @@ module Posts
     end
 
     def find(post_id)
-      Post.find(post_id)
+      Release.find(post_id)
     end
   end
 end

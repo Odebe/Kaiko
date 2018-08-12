@@ -2,12 +2,14 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  
-  root 'posts#index'
+
+  root 'main#index'
 
   namespace :admin do
     root 'posts#index'
-    
+
+    resources :releases
+
     resources :posts do
       resources :comments
 
@@ -17,9 +19,15 @@ Rails.application.routes.draw do
     end
 
     resources :projects do
-      resources :chapters
+      resources :chapters do
+        member do 
+          post :release
+        end
+      end
     end
   end
+
+  resources :releases, only: %i[index]
 
   resources :posts, only: %i[index show] do
     resources :comments, only: %i[create destroy]

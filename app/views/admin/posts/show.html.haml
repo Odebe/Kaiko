@@ -1,4 +1,4 @@
-= render 'admin/' + partial_by_post_type(@post.post_type)
+= render @post, local: :post
 .row
   .ui.hidden.divider
   %h2.ui.huge.header Комментарии

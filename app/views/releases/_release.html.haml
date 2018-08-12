@@ -1,0 +1,8 @@
+.item
+  .right.floated.content
+    %span= release.created_at.strftime("%d/%m/%Y")
+  .content
+    .header= release.project.title
+    .description
+      %span
+        Том #{release.chapter.vol} | Глава #{release.chapter.num} | #{release.chapter.title}

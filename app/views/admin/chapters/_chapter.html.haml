@@ -4,6 +4,8 @@
   %td= chapter.title
   %td Скачать
   %td
+    = link_to 'Создать релиз', ''
+    |
     = link_to 'Изменить', edit_admin_project_chapter_path(@project, chapter)
     |
     = link_to 'Удалить', admin_project_chapter_path(@project, chapter), method: :delete, data: { confirm: 'Are you sure?' }

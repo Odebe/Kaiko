@@ -12,12 +12,11 @@ module Admin
     def show; end
 
     def create
-      chapter = @project.chapters.create(chapter_params)
-      if chapter.valid?
-        # ReleasePostWorker.perform_async(chapter.id)
-        redirect_to [:admin, @project], notice: 'Comment was successfully created.'
+      result = CreateChapter.new.call(params)
+      if result.success?
+        redirect_to [:admin, @project], notice: 'Chapter was successfully created.'
       else
-        redirect_to [:admin, @project], notice: chapter.errors 
+        redirect_to [:admin, @project], notice: result.failure
       end
     end
 
@@ -29,6 +28,10 @@ module Admin
     def destroy
       @chapter.destroy
       redirect_to [:admin, @project]
+    end
+
+    def release
+
     end
 
     private

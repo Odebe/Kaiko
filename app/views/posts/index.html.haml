@@ -1,20 +1,13 @@
-- @posts.each do |post|
-  .ui.vertical.segment
-    %h3.ui.header
-      = link_to post.title, post_path(post.id), class: 'post_title'
-    %span
-      = post.created_at.strftime("%m/%d/%Y в %I:%M%p")
-      by
-      Пользователь
-      -# %a.ui.image.label
-      -#   = post.created_at.strftime("%m/%d/%Y %I:%M%p")
-      -# .ui.image.label
-      -#   = image_tag "http://dearmemories.ucoz.ru/avatar/54/229149.jpg"
-      -#   Пользователь
-      -# %a.ui.image.label= post_type(post.post_type)
-    %p
-      - if post.release_item?
-        %p= link_to image_tag(post.project.preview.url, class: %w[ui fluid image]), post_path(post)
-      - else
-        %p= post.text
+.row
+  .ui.small.divided.selection.list
+    - @posts.each do |post|
+      .ui.vertical.segment
+        %h3.ui.header
+          = link_to post.title, post_path(post.id), class: 'post_title'
+        %span
+          = post.created_at.strftime("%m/%d/%Y в %I:%M%p")
+          by
+          Пользователь
+        %p
+          %p= post.text
 = paginate @posts
