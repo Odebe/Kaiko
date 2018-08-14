@@ -2,11 +2,14 @@
 
 module Admin
   class ReleasesController < ApplicationController
+    PERMITTED_QUERY_PARAMS = %i[page].freeze
+
     before_action :set_release, only: %i[show edit update destroy publish]
-    before_action :set_markdown
 
     def index
-      @releases = Admin::Releases::QueryService.new.call(params)
+      relations = %i[project chapter]
+      scope = Release.includes(*relations)
+      @releases = Queries::Service.new(scope).call(query_params).per(25)
     end
 
     def show; end
@@ -59,16 +62,12 @@ module Admin
 
     private
 
+    def query_params
+      params.slice(*PERMITTED_QUERY_PARAMS)
+    end
+
     def set_release
-      @release = Admin::Releases::QueryService.new.call(params)
+      @release = Release.find(params[:id])
     end
-
-    def set_markdown
-      @markdown = Redcarpet::Markdown.new(MarkdownToSemanticUI, tables: true)
-    end
-
-    # def post_params
-    #   params.fetch(:post, {}).permit(:title, :text, :post_type, :project_id)
-    # end
   end
 end

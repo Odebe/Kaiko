@@ -2,17 +2,25 @@
 
 module Client
   class ProjectsController < ApplicationController
-    before_action :set_project, only: %i[index show]
+    PERMITTED_QUERY_PARAMS = %i[page].freeze
+
+    before_action :set_project, only: :show
 
     def index
-      @projects = Projects::QueryService.new.call({})
+      @projects = Queries::Service.new(Project).call(query_params)
     end
+
     def show; end
 
     private
 
+    def query_params
+      # params.slice(*PERMITTED_QUERY_PARAMS)
+      {}
+    end
+
     def set_project
-      @project = Projects::QueryService.new.call(params)
+      @project = Project.includes(:chapters).find(params[:id])
     end
   end
 end

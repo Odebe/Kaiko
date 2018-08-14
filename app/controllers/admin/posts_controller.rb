@@ -2,11 +2,13 @@
 
 module Admin
   class PostsController < ApplicationController
+    PERMITTED_QUERY_PARAMS = %i[page].freeze
+
     before_action :set_post, only: %i[show edit update destroy publish]
     before_action :set_markdown
 
     def index
-      @posts = Admin::Posts::QueryService.new.call(params)
+      @posts = Queries::Service.new(Post).call(query_params).per(25)
     end
 
     def show; end
@@ -59,16 +61,16 @@ module Admin
 
     private
 
+    def query_params
+      params.slice(*PERMITTED_QUERY_PARAMS)
+    end
+
     def set_post
-      @post = Admin::Posts::QueryService.new.call(params)
+      @post = Post.includes(:comments).find(params[:id])
     end
 
     def set_markdown
       @markdown = Redcarpet::Markdown.new(MarkdownToSemanticUI, tables: true)
     end
-
-    # def post_params
-    #   params.fetch(:post, {}).permit(:title, :text, :post_type, :project_id)
-    # end
   end
 end

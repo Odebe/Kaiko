@@ -2,20 +2,9 @@
 
 module Client
   class MainController < ApplicationController
-    before_action :set_post, only: :show
-    before_action :set_markdown
-
     def index
-      @posts = Posts::QueryService.new.call(params).last(8)
-      @releases = Releases::QueryService.new.call(params).last(8)
-    end
-
-    def show; end
-
-    private
-
-    def set_post
-      @post = Posts::QueryService.new.call(params)
+      @posts = Queries::Service.new(Post).call({}).first(8)
+      @releases = Queries::Service.new(Release).call({}).first(8)
     end
   end
 end

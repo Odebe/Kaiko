@@ -18,7 +18,7 @@ module Admin
 
     def destroy
       @user.destroy
-      redirect_to admin_posts_path, notice: 'Post was successfully destroyed.'
+      redirect_to admin_posts_path, notice: 'User was successfully destroyed.'
     end
 
     private

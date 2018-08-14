@@ -2,10 +2,12 @@
 
 module Admin
   class ProjectsController < ApplicationController
-    before_action :set_project, only: [:show, :edit, :update, :destroy]
+    PERMITTED_QUERY_PARAMS = %i[page].freeze
+
+    before_action :set_project, only: %i[show edit update destroy]
 
     def index
-      @projects = Projects::QueryService.new.call(params)
+      @projects = Queries::Service.new(Project).call(query_params)
     end
 
     def show
@@ -56,14 +58,12 @@ module Admin
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Projects::QueryService.new.call(params)
+    def query_params
+      params.slice(*PERMITTED_QUERY_PARAMS)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def project_params
-    #   params.require(:project).permit(:title, :description, :preview)
-    # end
+    def set_project
+      @project = Project.includes(:chapters).find(params[:id])
+    end
   end
 end
