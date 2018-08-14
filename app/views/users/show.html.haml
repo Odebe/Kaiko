@@ -1,0 +1,17 @@
+.ui.grid
+  .row
+    .two.column.doubling.ui.grid
+      .seven.wide.column
+        = image_tag 'https://semantic-ui.com/images/wireframe/image.png', class: %w[ui fluid image], height: 200, width: 100
+      .eight.wide.column
+        .row
+          %h3.ui.header Почта
+        .row
+          = @user.email
+        .row
+          %h3.ui.header Имя
+        .row
+          = @user.email
+        .row
+          %span
+            = link_to 'Изменить профиль'

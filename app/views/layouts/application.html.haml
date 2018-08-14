@@ -25,7 +25,7 @@
           %a= link_to 'Админка', admin_root_path, class: current_item?('')
         .right.menu
           - if user_signed_in?
-            %a= link_to 'Профиль', '', class: current_item?('')
+            %a= link_to 'Профиль', user_path(current_user), class: current_item?('')
             %a= link_to 'Выход', destroy_user_session_url, class: current_item?(''), method: 'delete'
           - else
             %a= link_to 'Регистрация', new_user_registration_path, class: current_item?('registration')

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'posts#index'
 
+    resources :users
+
     resources :releases
 
     resources :posts do
@@ -20,12 +22,14 @@ Rails.application.routes.draw do
 
     resources :projects do
       resources :chapters do
-        member do 
+        member do
           post :release
         end
       end
     end
   end
+
+  resources :users, only: :show
 
   resources :releases, only: %i[index]
 
