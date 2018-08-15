@@ -1,0 +1,23 @@
+.row
+  %h1.ui.huge.header Список новостей
+  = link_to 'Добавить пользователя', ''
+  %table.ui.single.line.table
+    %thead
+      %tr
+        %th.one.wide id
+        %th.eight.wide Почта
+        %th.one.wide Роль
+        %th.two.wide Операции
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.email
+          %td Пользователь
+          %td
+            = link_to 'Профиль', admin_user_path(user) 
+            |
+            = link_to 'Изменить', ''
+            | 
+            = link_to 'Бан', [:admin, user], method: :ban, data: { confirm: 'Are you sure?' } 
+  = paginate @users
