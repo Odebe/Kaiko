@@ -16,7 +16,7 @@ class CreateProject
   end
 
   def validate(input)
-    res = ProjectValidator.call(input)
+    res = ValidatorService.call(Project, input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 

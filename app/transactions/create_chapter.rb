@@ -17,7 +17,7 @@ class CreateChapter
   end
 
   def validate(input)
-    res = ChapterValidator.call(input)
+    res = ValidatorService.call(Chapter, input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 

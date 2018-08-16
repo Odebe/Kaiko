@@ -16,7 +16,7 @@ class CreateRelease
   end
 
   def validate(input)
-    res = ReleaseValidator.call(input)
+    res = ValidatorService.call(Release, input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 

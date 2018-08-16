@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module TransactionsHelper
+  # parent_keys for nester models with params from controller
   def prepare_params(input, key, parent_keys = {})
     result =
       if input.is_a? ActionController::Parameters

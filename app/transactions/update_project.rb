@@ -22,7 +22,7 @@ class UpdateProject
   end
 
   def validate_params(input)
-    res = ProjectValidator.call(input)
+    res = ValidatorService.call(Project, input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
