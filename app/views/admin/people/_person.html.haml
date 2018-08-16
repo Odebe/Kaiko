@@ -1,0 +1,15 @@
+.ui.card
+  .image
+    %img{:src => "https://semantic-ui.com/images/avatar2/large/kristy.png"}/
+  .content
+    .header= person.name
+    .meta
+      =link_to 'Изменить', edit_admin_person_path(person)
+      |
+      =link_to 'Удалить', [:admin, person], method: :delete, data: { confirm: 'Are you sure?' }
+    .description
+      = person.situations
+  .extra.content
+    %a
+      %i
+      TODO: Список проектов например

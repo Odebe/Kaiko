@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
     resources :users
 
+    resources :people
+
     resources :releases
 
     resources :posts do

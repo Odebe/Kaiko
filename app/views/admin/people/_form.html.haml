@@ -1,0 +1,9 @@
+= simple_form_for [:admin, person], html: { class: 'ui form', fluid: true } do |f|
+  .field
+    = f.error :base
+  .field
+    = f.input :name, label: 'Имя'
+  .field
+    = f.input :situations, label: 'Должность'
+  .field
+    = f.button :submit, class: 'ui button'

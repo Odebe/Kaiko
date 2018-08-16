@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class UpdateProject
+class UpdatePerson
   include Dry::Transaction
   include Dry::Monads::Result::Mixin
   include TransactionsHelper
 
   step :prepare
-  step :find_project
+  step :find_staff
   step :validate_params
   step :update
 
@@ -16,22 +16,22 @@ class UpdateProject
     prepare_params(input, :person)
   end
 
-  def find_project(input)
-    @project = Project.find_by_id(input[:id])
-    @project.present? ? Success(input) : Failure('project not found')
+  def find_staff(input)
+    @obj = Person.find_by_id(input[:id])
+    @obj.present? ? Success(input) : Failure('obj not found')
   end
 
   def validate_params(input)
-    res = ValidatorService.call(Project, input)
+    res = PeopleValidator.call(input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
   def update(input)
-    @project.update(input)
-    if @project.valid?
-      Success(@project)
+    @obj.update(input)
+    if @obj.valid?
+      Success(@obj)
     else
-      Failure(@project.errors.messages)
+      Failure(@obj.errors.messages)
     end
   end
 end

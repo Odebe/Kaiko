@@ -1,0 +1,13 @@
+.ui.card
+  .image
+    %img{:src => "https://semantic-ui.com/images/avatar2/large/kristy.png"}/
+  .content
+    .header= @person.name
+    .meta
+      %span.date Joined in 2013
+    .description
+      = @person.situations
+  .extra.content
+    %a
+      %i
+      TODO: Список проектов например
