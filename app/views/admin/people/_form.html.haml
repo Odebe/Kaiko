@@ -6,4 +6,7 @@
   .field
     = f.input :situations, label: 'Должность'
   .field
+    = f.input :avatar, as: :file, label: 'Аватар'
+    = f.input :avatar_cache, as: :hidden
+  .field
     = f.button :submit, class: 'ui button'

@@ -1,6 +1,5 @@
 .ui.card
-  .image
-    %img{:src => "https://semantic-ui.com/images/avatar2/large/kristy.png"}/
+  .image= image_tag person.avatar.url
   .content
     .header= person.name
     .description
