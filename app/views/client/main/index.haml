@@ -1,10 +1,10 @@
 %h3.ui.header Последние релизы
 .row
   .ui.small.divided.selection.list
-    = render partial: 'releases/release', collection: @releases.last(3) #, cached: true
+    = render partial: 'client/releases/release', collection: @releases.last(3) #, cached: true
 
 %h3.ui.header Последние новости
 .row
   .ui.small.divided.selection.list
     - @posts.each do |post|
-      = render partial: 'posts/post_list', locals: { post: post }
+      = render partial: 'client/posts/post_list', locals: { post: post }

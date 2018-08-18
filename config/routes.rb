@@ -3,7 +3,23 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'main#index'
+  root 'client/main#index'
+
+  scope module: 'client' do
+    get '/main', to: 'main#index'
+    resources :users, only: :show
+
+    get '/team', to: 'people#index'
+    # resources :people, only: :index
+
+    resources :releases, only: %i[index]
+
+    resources :posts, only: %i[index show] do
+      resources :comments, only: %i[create destroy]
+    end
+
+    resources :projects, only: %i[index show]
+  end
 
   namespace :admin do
     root 'posts#index'
@@ -30,17 +46,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :users, only: :show
-
-  get '/team', to: 'people#index'
-  # resources :people, only: :index
-
-  resources :releases, only: %i[index]
-
-  resources :posts, only: %i[index show] do
-    resources :comments, only: %i[create destroy]
-  end
-
-  resources :projects, only: %i[index show]
 end

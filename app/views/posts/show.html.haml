@@ -1,7 +1,0 @@
-=render @post
-.ui.divider
-%h3.ui.header Комментарии
-= render partial: 'comments/comment', collection: @post.comments, cached: true
-.ui.divider
-%h3.ui.header Написать
-= render 'comments/form'

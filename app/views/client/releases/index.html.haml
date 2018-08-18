@@ -1,0 +1,4 @@
+.row
+  .ui.small.divided.selection.list
+    = render partial: 'release', collection: @releases #, cached: true
+= paginate @releases

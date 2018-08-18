@@ -53,4 +53,4 @@
           %th.seven.wide Название
           %th.two.wide Ссылка
       %tbody
-        = render partial: 'chapters/chapter', collection: @project.chapters.select{ |c| c.id.present? }, as: :chapter
+        = render partial: 'client/chapters/chapter', collection: @project.chapters.select{ |c| c.id.present? }, as: :chapter
