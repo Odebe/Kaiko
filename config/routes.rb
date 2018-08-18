@@ -33,6 +33,9 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
+  get '/team', to: 'people#index'
+  # resources :people, only: :index
+
   resources :releases, only: %i[index]
 
   resources :posts, only: %i[index show] do

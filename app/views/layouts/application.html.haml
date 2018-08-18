@@ -20,7 +20,7 @@
         %a= link_to 'Новости', posts_path, class: current_item?('posts')
         %a= link_to 'Релизы', releases_path, class: current_item?('releases')
         %a= link_to 'Проекты', projects_path, class: current_item?('projects')
-        %a= link_to 'О команде', root_path, class: current_item?('')
+        %a= link_to 'О команде', team_path, class: current_item?('people')
         - if user_signed_in?
           %a= link_to 'Админка', admin_root_path, class: current_item?('')
         .right.menu

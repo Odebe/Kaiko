@@ -1,0 +1,5 @@
+.ui.grid
+  .row
+    .ui.three.stackable.cards
+      - @people.each do |person|
+        = render 'person', person: person
