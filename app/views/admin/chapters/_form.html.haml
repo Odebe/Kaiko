@@ -13,5 +13,8 @@
           = f.input :vol, label: 'Том', disabled: is_disabled_for?('edit')
         .three.wide.field
           = f.input :num, label: 'Глава', disabled: is_disabled_for?('edit')
+      .one.fileds
+        .field
+          = f.input :link, label: 'Ссылка'
     .field
       = f.button :submit, class: "ui button"
