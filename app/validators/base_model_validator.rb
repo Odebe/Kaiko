@@ -2,11 +2,11 @@
 
 BaseModelValidator = Dry::Validation.Schema do
   configure do
-    option :model # ActiveRecord model class in this case
-    option :params # params of this model
+
+    option :record
 
     def unique?(attr_name, value)
-      !model.where(attr_name.to_sym => value).exists?
+      !record.class.where.not(id: record.id).where(attr_name.to_sym => value).exists?
     end
 
     def relation?(relation_model, relation_id)

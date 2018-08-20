@@ -17,18 +17,13 @@ class CreateChapter
   end
 
   def validate(input)
-    res = ValidatorService.call(Chapter, input)
+    res = ValidatorService.call(Chapter.new(input), input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
   def create(input)
-    result = Chapter.new(input)
-    if result.valid?
-      result.save
-      Success(result)
-    else
-      Failure(result.errors.messages)
-    end
+    result = Chapter.create(input)
+    result.valid? ? Success(result) : Failure(result.errors.messages)
   end
 
   def create_release(input)

@@ -6,32 +6,27 @@ class UpdateProject
   include TransactionsHelper
 
   step :prepare
-  step :find_project
+  step :find_record
   step :validate_params
   step :update
 
   private
 
   def prepare(input)
-    prepare_params(input, :person)
+    prepare_params(input, :project)
   end
 
-  def find_project(input)
-    @project = Project.find_by_id(input[:id])
-    @project.present? ? Success(input) : Failure('project not found')
+  def find_record(input)
+    record = Project.find_by_id(input[:id])
+    record.present? ? Success(record: record, params: input) : Failure('record not found')
   end
 
   def validate_params(input)
-    res = ValidatorService.call(Project, input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = ValidatorService.call(input[:record], input[:params])
+    res.success? ? Success(record: input[:record], params: res.to_h) : Failure(res.messages)
   end
 
   def update(input)
-    @project.update(input)
-    if @project.valid?
-      Success(@project)
-    else
-      Failure(@project.errors.messages)
-    end
+    input[:record].update(input[:params]) ? Success(input[:record]) : Failure(input[:record].errors.messages)
   end
 end
