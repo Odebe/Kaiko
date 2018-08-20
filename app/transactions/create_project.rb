@@ -16,17 +16,12 @@ class CreateProject
   end
 
   def validate(input)
-    res = ValidatorService.call(Project, input)
+    res = ValidatorService.call(Project.new(input), input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
   def create(input)
-    project = Project.new(input)
-    if project.valid?
-      project.save
-      Success(project)
-    else
-      Failure(project.errors.messages)
-    end
+    record = Project.create(input)
+    record.valid? ? Success(record) : Failure(record.errors.messages)
   end
 end

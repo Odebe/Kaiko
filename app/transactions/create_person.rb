@@ -16,17 +16,12 @@ class CreatePerson
   end
 
   def validate(input)
-    res = ValidatorService.call(Person, input)
+    res = ValidatorService.call(Person.new(input), input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
   def create(input)
-    result = Person.new(input)
-    if result.valid?
-      result.save
-      Success(result)
-    else
-      Failure(result.errors.messages)
-    end
+    record = Person.create(input)
+    record.valid? ? Success(record) : Failure(record.errors.messages)
   end
 end

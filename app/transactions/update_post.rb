@@ -6,7 +6,7 @@ class UpdatePost
   include TransactionsHelper
 
   step :prepare
-  step :find_post
+  step :find_record
   step :validate_params
   step :update
 
@@ -16,22 +16,17 @@ class UpdatePost
     prepare_params(input, :post)
   end
 
-  def find_post(input)
-    @post = Post.find_by_id(input[:id])
-    @post.present? ? Success(input) : Failure('post not found')
+  def find_record(input)
+    record = Post.find_by_id(input[:id])
+    record.present? ? Success(record: record, params: input) : Failure('record not found')
   end
 
   def validate_params(input)
-    res = PostValidator.call(input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = PostValidator.call(input[:params])
+    res.success? ? Success(record: input[:record], params: res.to_h) : Failure(res.messages)
   end
 
   def update(input)
-    @post.update(input)
-    if @post.valid?
-      Success(@post)
-    else
-      Failure(@post.errors.messages)
-    end
+    input[:record].update(input[:params]) ? Success(input[:record]) : Failure(input[:record].errors.messages)
   end
 end

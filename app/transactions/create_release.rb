@@ -16,17 +16,12 @@ class CreateRelease
   end
 
   def validate(input)
-    res = ValidatorService.call(Release, input)
+    res = ValidatorService.call(Release.new(input), input)
     res.success? ? Success(res.to_h) : Failure(res.messages)
   end
 
   def create(input)
-    result = Release.new(input)
-    if result.valid?
-      result.save
-      Success(result)
-    else
-      Failure(result.errors.messages)
-    end
+    record = Release.create(input)
+    record.valid? ? Success(record) : Failure(record.errors.messages)
   end
 end
