@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_095116) do
+ActiveRecord::Schema.define(version: 2018_08_23_124609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 2018_08_18_095116) do
 
   create_table "releases", force: :cascade do |t|
     t.boolean "published", default: false, null: false
+    t.bigint "project_id"
     t.bigint "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "project_id"
     t.index ["chapter_id"], name: "index_releases_on_chapter_id"
     t.index ["project_id"], name: "index_releases_on_project_id"
   end
@@ -82,8 +82,10 @@ ActiveRecord::Schema.define(version: 2018_08_18_095116) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "chapters", "projects"

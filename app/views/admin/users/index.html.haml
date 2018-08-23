@@ -5,7 +5,8 @@
     %thead
       %tr
         %th.one.wide id
-        %th.eight.wide Почта
+        %th.four.wide Почта
+        %th.four.wide Имя
         %th.one.wide Роль
         %th.two.wide Операции
     %tbody
@@ -13,6 +14,7 @@
         %tr
           %td= user.id
           %td= user.email
+          %td= user.username
           %td Пользователь
           %td
             = link_to 'Профиль', admin_user_path(user) 
