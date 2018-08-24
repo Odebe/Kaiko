@@ -3,8 +3,8 @@
 ProjectValidator = Dry::Validation.Schema(BaseModelValidator) do
   required(:title).filled(unique?: :title)
   required(:description).filled
-  required(:preview)
+  required(:preview).filled(size_less?: 5) # in mb
   optional(:preview_cache)
-  required(:cover)
+  required(:cover).filled(size_less?: 2) # in mb
   optional(:cover_cache)
 end
