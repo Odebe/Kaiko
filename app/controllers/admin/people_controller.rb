@@ -5,7 +5,7 @@ module Admin
     before_action :set_person, only: %i[show edit update destroy publish]
 
     def index
-      @people = Person.all # not a big deal
+      @people = Person.all.order(:id) # not a big deal
     end
 
     def show; end

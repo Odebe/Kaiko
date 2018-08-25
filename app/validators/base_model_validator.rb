@@ -15,7 +15,7 @@ BaseModelValidator = Dry::Validation.Schema do
 
     def size_less?(max_size, value)
       # value.size in bytes and max_value in mb
-      value.size/1024 < max_size*1024
+      value.size/1024 < max_size*1024 if value.present?
     end
 
     def self.messages

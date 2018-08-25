@@ -1,7 +1,18 @@
 .ui.grid
   .row
     %h1.ui.huge.header Ативные проекты
-
-  - @projects.each do |project|
-    .row
-      = link_to image_tag(project.preview.url, class: 'ui image fluid'), project
+    .ui.three.stackable.cards
+      - @projects.each do |project|
+        .card
+          .image
+            = image_tag(project.cover.thumb.url, class: 'ui image fluid')
+          .content
+            .header
+              = project.title
+            .meta
+              Название на англ
+            .description
+              = project.description.truncate(150)
+          %a{href: project_url(project)}
+            .ui.bottom.attached.button
+              Подробнее

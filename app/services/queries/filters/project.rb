@@ -3,7 +3,7 @@
 module Queries
   module Filters
     Project = Queries::Lib::Constructor.build do
-      filter by: :title, default: :desc do |scope, value|
+      filter by: :title, default: :asc do |scope, value|
         scope.order(title: value)
       end
     end

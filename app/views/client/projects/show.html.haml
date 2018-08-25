@@ -1,28 +1,29 @@
+
+-# = image_tag @project.cover.url, class: %w[ui medium left floated image]
 -# %p
--#   %strong Title:
+-#   %b Название:
 -#   = @project.title
 -# %p
--#   %strong Description:
--#   = @project.description
+-#   %b Жанры:
+-#   123123 
 -# %p
--#   %strong Preview:
--#   = image_tag @project.preview.url, class: %w[ui fluid image]
--# = link_to 'Edit', edit_admin_project_path(@project)
--# = link_to 'Back', projects_path
+-#   %b Описание:
+-#   = @project.description
 
--# %h3.ui.header Список глав
--# %table.ui.single.line.table
--#   %thead
--#     %tr
--#       %th.one.wide Том
--#       %th.one.wide Номер
--#       %th.eight.wide Название
--#       %th.two.wide Ссылка
--#   %tbody
--#     = render partial: 'chapters/chapter', collection: @project.chapters
--# .ui.divider
-.row
-  %h1.ui.huge.header= @project.title 
+-# %h1.ui.huge.header Список глав
+-# .ui.list
+-#   - @project.chapters.group_by(&:vol).reverse_each do |volume, chapters|
+-#     .item
+-#       .content
+-#         .header= "Том №#{volume}"
+-#       .list
+-#         - chapters.each do |chapter|
+-#           .item
+-#             .content
+-#               .header= chapter.title
+
+-# .row
+-#   %h1.ui.huge.header= @project.title 
    
 .ui.grid
   .row
@@ -43,14 +44,30 @@
         .row
           Жанры
   .row
-    .divider.hidden
     %h3.ui.header Список глав
-    %table.ui.single.line.table
-      %thead
-        %tr
-          %th.one.wide Том
-          %th.one.wide Номер
-          %th.seven.wide Название
-          %th.two.wide Ссылка
-      %tbody
-        = render partial: 'client/chapters/chapter', collection: @project.chapters.select{ |c| c.id.present? }, as: :chapter
+  .row
+    .one.column.doubling.ui.grid
+      .column
+        - @project.chapters.group_by(&:vol).reverse_each do |volume, chapters|
+          .row.volume_row
+            %h3.ui.header= "Том №#{volume}"
+          .row.chapters_row
+            .ui.small.selection.list{style: 'width: 100%;'}
+              - chapters.sort_by(&:num).reverse_each do |chapter|
+                .item
+                  .right.floated.content
+                    .description= link_to 'Скачать', chapter.link
+                  .content
+                    .description
+                      = "Глава №#{chapter.num}. '#{chapter.title}' "
+
+    -# %h3.ui.header Список глав
+    -# %table.ui.single.line.table
+    -#   %thead
+    -#     %tr
+    -#       %th.one.wide Том
+    -#       %th.one.wide Номер
+    -#       %th.seven.wide Название
+    -#       %th.two.wide Ссылка
+    -#   %tbody
+    -#     = render partial: 'client/chapters/chapter', collection: @project.chapters.select{ |c| c.id.present? }, as: :chapter
