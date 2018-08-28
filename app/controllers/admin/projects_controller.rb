@@ -12,6 +12,7 @@ module Admin
 
     def show
       @chapter = @project.chapters.build
+      @releases = Release.where(project_id: @project.id).pluck(:id, :chapter_id)
     end
 
     def new

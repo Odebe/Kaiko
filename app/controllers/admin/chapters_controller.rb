@@ -2,7 +2,7 @@
 
 module Admin
   class ChaptersController < Admin::ApplicationController
-    before_action :set_project, only: %i[update edit create destroy]
+    before_action :set_project, only: %i[update edit create destroy release]
     before_action :set_chapter, only: %i[update edit destroy]
 
     def new; end
@@ -31,10 +31,20 @@ module Admin
     end
 
     def release
-
+      result = CreateRelease.new.call(release_params)
+      if result.success?
+        # in case when something gone wrong
+        redirect_to [:admin, @project], notice: 'Релиз уже существует'
+      else
+        redirect_to [:admin, @project], notice: 'Задача запущена'
+      end
     end
 
     private
+
+    def release_params
+      { chapter_id: params[:id], project_id: params[:project_id] }
+    end
 
     def set_chapter
       @chapter = Chapter.find(params[:id])

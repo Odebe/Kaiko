@@ -4,8 +4,9 @@
   %td= chapter.title
   %td= link_to 'Скачать', chapter.link
   %td
-    = link_to 'Создать релиз', ''
-    |
+    - if can_be_released?(@releases, chapter.id)
+      = link_to 'Создать релиз', release_admin_project_chapter_path(@project, chapter), method: :post
+      |
     = link_to 'Изменить', edit_admin_project_chapter_path(@project, chapter)
     |
     = link_to 'Удалить', admin_project_chapter_path(@project, chapter), method: :delete, data: { confirm: 'Are you sure?' }
