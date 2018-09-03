@@ -2,6 +2,8 @@
 
 module Admin
   class PeopleController < ApplicationController
+
+    before_action :authorize_person
     before_action :set_person, only: %i[show edit update destroy publish]
 
     def index
@@ -46,6 +48,10 @@ module Admin
     end
 
     private
+
+    def authorize_person
+      authorize [:admin, Person]
+    end
 
     def set_person
       @person = Person.find(params[:id])

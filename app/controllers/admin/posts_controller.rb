@@ -4,6 +4,7 @@ module Admin
   class PostsController < ApplicationController
     PERMITTED_QUERY_PARAMS = %i[page].freeze
 
+    before_action :authorize_post
     before_action :set_post, only: %i[show edit update destroy publish]
     before_action :set_markdown
 
@@ -60,6 +61,10 @@ module Admin
     end
 
     private
+
+    def authorize_post
+      authorize [:admin, Post]
+    end
 
     def query_params
       params.slice(*PERMITTED_QUERY_PARAMS)

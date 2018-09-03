@@ -13,8 +13,14 @@
         %tr
           %td= user.id
           %td= user.email
-          %td Пользователь
+          %td= user.role
           %td
+            =link_to 'Юзер!', user_admin_user_path(user), method: :post, data: { confirm: 'Are you sure?' }
+            |
+            =link_to 'Оператор!', operator_admin_user_path(user), method: :post, data: { confirm: 'Are you sure?' }
+            |
+            =link_to 'Админ!', admin_admin_user_path(user), method: :post, data: { confirm: 'Are you sure?' }
+            |
             = link_to 'Профиль', admin_user_path(user) 
             |
             = link_to 'Изменить', ''

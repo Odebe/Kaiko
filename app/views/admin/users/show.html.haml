@@ -2,6 +2,12 @@
   .row
     %h1.ui.huge.header @user.email
   .row
+    =link_to 'Юзер!', user_admin_user_path(@user), method: :post, data: { confirm: 'Are you sure?' }
+    |
+    =link_to 'Оператор!', operator_admin_user_path(@user), method: :post, data: { confirm: 'Are you sure?' }
+    |
+    =link_to 'Админ!', admin_admin_user_path(@user), method: :post, data: { confirm: 'Are you sure?' }
+    |
     =link_to 'Показать на сайте', @user
     |
     =link_to 'Изменить', edit_admin_user_path(@user)
@@ -20,3 +26,7 @@
           %h3.ui.header Имя
         .row
           = @user.email
+        .row
+          %h3.ui.header Роль
+        .row
+          = @user.role

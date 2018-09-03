@@ -4,6 +4,7 @@ module Admin
   class ReleasesController < ApplicationController
     PERMITTED_QUERY_PARAMS = %i[page].freeze
 
+    before_action :authorize_release
     before_action :set_release, only: %i[show edit update destroy publish]
 
     def index
@@ -61,6 +62,10 @@ module Admin
     end
 
     private
+
+    def authorize_release
+      authorize [:admin, Release]
+    end
 
     def query_params
       params.slice(*PERMITTED_QUERY_PARAMS)

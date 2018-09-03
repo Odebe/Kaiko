@@ -20,7 +20,7 @@ module Client
     private
 
     def set_post
-      @post = Posts::QueryService.new.call(params)
+      @post = Post.find(params[:post_id])
     end
 
     def set_comment

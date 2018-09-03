@@ -24,7 +24,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'posts#index'
 
-    resources :users
+    resources :users do
+      member do 
+        post :admin
+        post :operator
+        post :user
+      end
+    end
 
     resources :people
 

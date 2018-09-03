@@ -13,7 +13,7 @@
         %tr
           %td= link_to post.title, admin_post_path(post.id), class: 'post_title'
           %td Admin
-          %td= post.created_at.strftime("%m/%d/%Y в %I:%M%p")
+          %td= post.created_at.strftime("%d/%m/%Y в %I:%M%p")
           %td 
             Опубликовать
             | 

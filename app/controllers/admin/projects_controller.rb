@@ -4,6 +4,7 @@ module Admin
   class ProjectsController < ApplicationController
     PERMITTED_QUERY_PARAMS = %i[page].freeze
 
+    before_action :authorize_project
     before_action :set_project, only: %i[show edit update destroy]
 
     def index
@@ -58,6 +59,10 @@ module Admin
     end
 
     private
+
+    def authorize_project
+      authorize [:admin, Project]
+    end
 
     def query_params
       params.slice(*PERMITTED_QUERY_PARAMS)

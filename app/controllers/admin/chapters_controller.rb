@@ -2,6 +2,8 @@
 
 module Admin
   class ChaptersController < Admin::ApplicationController
+
+    before_action :authorize_chapter
     before_action :set_project, only: %i[update edit create destroy release]
     before_action :set_chapter, only: %i[update edit destroy]
 
@@ -41,6 +43,10 @@ module Admin
     end
 
     private
+
+    def authorize_chapter
+      authorize [:admin, Chapter]
+    end
 
     def release_params
       { chapter_id: params[:id], project_id: params[:project_id] }

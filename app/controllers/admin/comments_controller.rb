@@ -2,6 +2,8 @@
 
 module Admin
   class CommentsController < ApplicationController
+
+    before_action :authorize_comment
     before_action :set_comment, only: %i[edit destroy]
     before_action :set_post, only: %i[create destroy]
 
@@ -25,12 +27,16 @@ module Admin
 
     private
 
+    def authorize_comment
+      authorize [:admin, Comment]
+    end
+
     def set_comment
       @comment = Comment.find(params[:id])
     end
 
     def set_post
-      @post = Posts::QueryService.new.call(params)
+      @post = Post.find(params[:post_id])
     end
 
     def comment_params
