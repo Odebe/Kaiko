@@ -22,8 +22,8 @@ class UpdatePost
   end
 
   def validate_params(input)
-    res = PostValidator.call(input[:params])
-    res.success? ? Success(record: input[:record], params: res.to_h) : Failure(res.messages)
+    res = Validations::Service.call(input[:record], input[:params])
+    res.success? ? Success(record: input[:record], params: res.success) : Failure(res.failure)
   end
 
   def update(input)

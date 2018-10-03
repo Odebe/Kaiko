@@ -16,8 +16,8 @@ class CreatePost
   end
 
   def validate(input)
-    res = PostValidator.call(input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = Validations::Service.call(Post.new(input), input)
+    res.success? ? Success(res.success) : Failure(res.failure)
   end
 
   def create(input)

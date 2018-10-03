@@ -16,8 +16,8 @@ class CreateProject
   end
 
   def validate(input)
-    res = ValidatorService.call(Project.new(input), input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = Validations::Service.call(Project.new(input), input)
+    res.success? ? Success(res.success) : Failure(res.messages)
   end
 
   def create(input)

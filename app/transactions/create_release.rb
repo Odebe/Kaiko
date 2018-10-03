@@ -16,8 +16,8 @@ class CreateRelease
   end
 
   def validate(input)
-    res = ValidatorService.call(Release.new(input), input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = ValidatorService.new.call(Release.new(input), input)
+    res.success? ? Success(res.success) : Failure(res.failure)
   end
 
   def create(input)

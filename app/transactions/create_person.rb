@@ -16,8 +16,8 @@ class CreatePerson
   end
 
   def validate(input)
-    res = ValidatorService.call(Person.new(input), input)
-    res.success? ? Success(res.to_h) : Failure(res.messages)
+    res = Validations::Service.call(Person.new(input), input)
+    res.success? ? Success(res.success) : Failure(res.failure)
   end
 
   def create(input)

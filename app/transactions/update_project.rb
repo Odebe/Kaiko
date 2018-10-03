@@ -22,8 +22,8 @@ class UpdateProject
   end
 
   def validate_params(input)
-    res = ValidatorService.call(input[:record], input[:params])
-    res.success? ? Success(record: input[:record], params: res.to_h) : Failure(res.messages)
+    res = Validations::Service.call(input[:record], input[:params])
+    res.success? ? Success(record: input[:record], params: res.success) : Failure(res.failure)
   end
 
   def update(input)
