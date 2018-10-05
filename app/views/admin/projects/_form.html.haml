@@ -1,6 +1,6 @@
 .ui.message
   .header Важно
-  %p Для проекта обязательно должны быть указаны: обложка и превью.
+  %p Для проекта обязательно должны быть указаны: обложка.
 
 = simple_form_for [:admin, project], html: { class: 'ui form', fluid: true } do |f|
   .field
@@ -12,8 +12,5 @@
   .field
     = f.input :cover, as: :file, label: 'Обложка'
     = f.input :cover_cache, as: :hidden
-  .field
-    = f.input :preview, as: :file, label: 'Превью для новостей'
-    = f.input :preview_cache, as: :hidden
   .field
     = f.button :submit, class: 'ui button'
